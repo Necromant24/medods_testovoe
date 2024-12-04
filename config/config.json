@@ -1,0 +1,4 @@
+{
+    "dbConnectionString": "postgres://postgres:postgres1@localhost:5432/medodsDb",
+    "hostPort": 8080
+}
