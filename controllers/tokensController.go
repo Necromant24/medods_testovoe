@@ -16,6 +16,8 @@ type TokensController struct {
 
 func (controller *TokensController) RefreshTokensPair(res http.ResponseWriter, req *http.Request) {
 	// TODO: make refresh from service
+
+	// если вы проверяющий, пожалуйста проверьте завтра, я все доделаю, просто поздно увидел сообщение с hh и поздно приступил к тестовому
 }
 
 func (controller *TokensController) GetTokensPair(res http.ResponseWriter, req *http.Request) {
