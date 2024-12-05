@@ -3,6 +3,7 @@ package repositories
 import (
 	"context"
 	"fmt"
+	"medods/auth-service/infrastructures"
 	"medods/auth-service/models"
 
 	"github.com/jackc/pgx/v5"
@@ -14,6 +15,9 @@ type UsersRepository struct {
 
 func (repo *UsersRepository) GetUserById(userId string) (models.User, error) {
 	var err error
+
+	repo.Conn, err = infrastructures.InitPgxConn()
+
 	if err != nil {
 		fmt.Println("Unable to connect to database: %v\n", err)
 	}

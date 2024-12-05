@@ -1,8 +1,10 @@
 package services
 
 import (
+	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"medods/auth-service/interfaces"
 	"medods/auth-service/models"
@@ -65,7 +67,18 @@ func (service *TokensService) RefreshTokens(accessToken string, refreshToken str
 		return "", "", err
 	}
 
-	if bhash == baseToken.Token {
+	var tokenCorrect = false
+
+	hash := sha256.Sum256([]byte(refreshToken))
+	preHashedPassword := hex.EncodeToString(hash[:])
+	err = bcrypt.CompareHashAndPassword([]byte(baseToken.Token), []byte(preHashedPassword))
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		tokenCorrect = true
+	}
+
+	if tokenCorrect {
 		// do refresh
 
 		access, refresh, err := GenerateTokenPair(getUserId, getIp)
@@ -125,10 +138,12 @@ func GenerateTokenPair(userID, clientIP string) (string, string, error) {
 }
 
 func Hash(password string, cost int) (string, error) {
-	hash, err := bcrypt.GenerateFromPassword([]byte(password), cost)
+	hash := sha256.Sum256([]byte(password))
+	preHashedPassword := hex.EncodeToString(hash[:])
+	bcryptHash, err := bcrypt.GenerateFromPassword([]byte(preHashedPassword), cost)
 	if err != nil {
 		return "", fmt.Errorf("failed to generate bcrypt hash: %w", err)
 	}
 
-	return string(hash), nil
+	return string(bcryptHash), nil
 }

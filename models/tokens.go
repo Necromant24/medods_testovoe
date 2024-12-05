@@ -1,8 +1,9 @@
 package models
 
 type RefreshToken struct {
-	Id     string
-	Token  string
-	UserId string
-	UserIp string
+	Id          string `json:"id"`
+	Token       string `json:"token"`
+	UserId      string `json:"userId"`
+	UserIp      string `json:"userIp"`
+	AccessToken string `json:"accessToken"`
 }

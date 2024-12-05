@@ -2,21 +2,17 @@ package infrastructures
 
 import (
 	"context"
+	"fmt"
+	"medods/auth-service/config"
 
 	"github.com/jackc/pgx/v5"
 )
 
-type PgxHandler struct {
-	Conn *pgx.Conn
-}
+func InitPgxConn() (*pgx.Conn, error) {
+	conn, err := pgx.Connect(context.Background(), config.GetConfig().DbConnectionString)
+	if err != nil {
+		fmt.Println(err)
+	}
 
-type PgxRow struct {
-}
-
-func (dbHandler *PgxHandler) Close(ctx context.Context) error {
-	return dbHandler.Close(context.Background())
-}
-
-func (dbHandler *PgxHandler) QueryRow(ctx context.Context, sql string, args ...any) pgx.Row {
-	return dbHandler.Conn.QueryRow(ctx, sql, args)
+	return conn, err
 }

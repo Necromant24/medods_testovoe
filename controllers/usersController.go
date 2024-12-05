@@ -23,6 +23,11 @@ func (usersController *UsersController) GetUserById(res http.ResponseWriter, req
 		fmt.Println(err)
 	}
 
+	if user.Id == "" {
+		r.JSON(res, http.StatusNotFound, userId)
+		return
+	}
+
 	r.JSON(res, http.StatusOK, user)
 
 }
