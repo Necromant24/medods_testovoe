@@ -18,7 +18,6 @@ type TokensController struct {
 }
 
 func (controller *TokensController) RefreshTokensPair(w http.ResponseWriter, r *http.Request) {
-	// TODO: make refresh from service
 
 	var token models.RefreshToken
 	err := json.NewDecoder(r.Body).Decode(&token)
@@ -49,14 +48,6 @@ func (controller *TokensController) RefreshTokensPair(w http.ResponseWriter, r *
 
 func (controller *TokensController) GetTokensPair(res http.ResponseWriter, req *http.Request) {
 	userId := chi.URLParam(req, "userId")
-
-	var userPassword models.UserPasswordDto
-	err := json.NewDecoder(req.Body).Decode(&userPassword)
-	if err != nil {
-		res.WriteHeader(http.StatusBadRequest)
-		res.Write([]byte(err.Error()))
-		return
-	}
 
 	r := render.New()
 
