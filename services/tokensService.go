@@ -25,7 +25,7 @@ type CustomClaims struct {
 }
 
 func (service *TokensService) RefreshTokens(accessToken string, refreshToken string) (string, string, error) {
-	bhash, err := Hash(refreshToken, cost)
+	_, err := Hash(refreshToken, cost)
 
 	token, err := jwt.Parse(accessToken, func(token *jwt.Token) (interface{}, error) {
 

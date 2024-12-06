@@ -34,7 +34,15 @@ func (controller *TokensController) RefreshTokensPair(w http.ResponseWriter, r *
 	}
 	token.UserIp = ip
 
-	controller.ITokensService.RefreshTokens(token.AccessToken, token.Token)
+	access, refresh, err := controller.ITokensService.RefreshTokens(token.AccessToken, token.Token)
+
+	ren := render.New()
+
+	var dict map[string]string = make(map[string]string)
+	dict["accessToken"] = access
+	dict["refreshToken"] = refresh
+
+	ren.JSON(w, http.StatusOK, dict)
 
 	// если вы проверяющий, пожалуйста проверьте завтра, я все доделаю, просто поздно увидел сообщение с hh и поздно приступил к тестовому
 }
