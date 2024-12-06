@@ -1,5 +1,5 @@
 {
     "dbConnectionString": "postgres://postgres:postgres1@localhost:5432/medodsDb",
     "hostPort": 8080,
-    "info": "// если вы проверяющий, пожалуйста проверьте завтра, я все доделаю, просто поздно увидел сообщение с hh и поздно приступил к тестовому"
+    "info": ""
 }
