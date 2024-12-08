@@ -41,7 +41,13 @@ func (controller *TokensController) RefreshTokensPair(w http.ResponseWriter, r *
 	dict["accessToken"] = access
 	dict["refreshToken"] = refresh
 
-	ren.JSON(w, http.StatusOK, dict)
+	status := http.StatusOK
+
+	if access == "" {
+		status = http.StatusBadRequest
+	}
+
+	ren.JSON(w, status, dict)
 
 }
 

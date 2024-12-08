@@ -1,15 +1,10 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"medods/auth-service/config"
 	"medods/auth-service/controllers"
 	"medods/auth-service/interfaces"
 	"medods/auth-service/repositories"
 	"medods/auth-service/services"
-
-	"github.com/jackc/pgx/v5"
 )
 
 type IServiceContainer interface {
@@ -18,11 +13,7 @@ type IServiceContainer interface {
 
 func InjectUsersController() interfaces.IUsersController {
 
-	conn, err := pgx.Connect(context.Background(), config.GetConfig().DbConnectionString)
-	if err != nil {
-		fmt.Println(err)
-	}
-	usersRepository := &repositories.UsersRepository{conn}
+	usersRepository := &repositories.UsersRepository{}
 	usersService := &services.UsersService{usersRepository}
 	usersController := &controllers.UsersController{usersService}
 
@@ -30,13 +21,10 @@ func InjectUsersController() interfaces.IUsersController {
 }
 
 func InjectTokensController() interfaces.ITokensController {
-	conn, err := pgx.Connect(context.Background(), config.GetConfig().DbConnectionString)
-	if err != nil {
-		fmt.Println(err)
-	}
-	usersRepository := &repositories.UsersRepository{conn}
+
+	usersRepository := &repositories.UsersRepository{}
 	usersService := &services.UsersService{usersRepository}
-	tokensRepo := &repositories.TokensRepository{conn}
+	tokensRepo := &repositories.TokensRepository{}
 	tokensService := &services.TokensService{tokensRepo}
 	tokensController := &controllers.TokensController{usersService, tokensService}
 

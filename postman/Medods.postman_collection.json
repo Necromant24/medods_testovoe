@@ -28,12 +28,15 @@
 		},
 		{
 			"name": "get tokens pair",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userPassword\": \"\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"\",\r\n    \"token\": \"Y3ajc0va8EIJISH2PgSReHsqdGduOcA9114Gw+7TykZSQ8sf180VNB6M6Vmt0ikvQm8gdbezSo8g8MGdykguCg==\",\r\n    \"userId\": \"0a22c421-ea29-4bb2-878e-6f752e46981f\",\r\n    \"userIp\": \"\",\r\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMGEyMmM0MjEtZWEyOS00YmIyLTg3OGUtNmY3NTJlNDY5ODFmIiwiaXAiOiI6OjEiLCJleHAiOjE3MzMzNzUzNTIsImlhdCI6MTczMzM3MzU1Mn0.drbjxYjwfKdtIkzhZxzQMdVmUl7esPx39nbPXsWaiJ0hCzMtL1eiTtj7CB5NL7vVnqeQfcFPReUThjzoQ993Kw\"\r\n}",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"refreshToken\": \"zO9Bx2p5bwRn1/q9s6WQMoKngbG1yUVB3P2fspBuM07ZACWCgD8aMDu0AHCdkgKqh4e6INfwDY/mpvXA99Y53g==\",\r\n    \"userId\": \"0a22c421-ea29-4bb2-878e-6f752e46981f\",\r\n    \"userIp\": \"\",\r\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMGEyMmM0MjEtZWEyOS00YmIyLTg3OGUtNmY3NTJlNDY5ODFmIiwiaXAiOiI6OjEiLCJleHAiOjE3MzM2OTk4MzksImlhdCI6MTczMzY5ODAzOX0.v-llp0NVeVV2W60k8m5oP_DSs5hVOFhW5wlRSpU1_WpZvI6jkghPi6rMVsqM59CSbykd2krpbFJIQcndn5TFiA\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
